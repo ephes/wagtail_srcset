@@ -10,6 +10,8 @@ register = template.Library()
 @register.tag(name="srcset_image")
 def srcset_image(parser, token):
     image_node = image(parser, token)
+    print(image_node)
+    print(dir(image_node))
     image_node.attrs["srcset"] = SrcSet(image_node)
     return image_node
 
@@ -41,7 +43,7 @@ class SrcSet:
         return srcset.split(" ")
 
     def resolve(self, context):
-        image = context["value"]
+        image = self.image_node.image_expr.resolve(context)
         out_renditions = []
         for rendition in self.renditions:
             rendered_image = image.get_rendition(rendition)
