@@ -9,6 +9,8 @@ import django
 from django.conf import settings
 from django.test.utils import get_runner
 
+from django.core.management import call_command
+
 
 def run_tests(*test_args):
     if not test_args:
@@ -16,6 +18,7 @@ def run_tests(*test_args):
 
     os.environ['DJANGO_SETTINGS_MODULE'] = 'tests.settings'
     django.setup()
+    # call_command("migrate")
     TestRunner = get_runner(settings)
     test_runner = TestRunner()
     failures = test_runner.run_tests(test_args)
