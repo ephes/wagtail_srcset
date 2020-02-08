@@ -31,3 +31,12 @@ class TestSrcSetImageTag:
         t = Template(template_text)
         result = t.render(Context({"photo": image}))
         assert "srcset" in result
+
+    def test_srcset_image_with_alt(self, image):
+        template_text = """
+            {% load wagtail_srcset_tags %}
+            {% srcset_image photo width-300 alt="some description" %}
+        """
+        t = Template(template_text)
+        result = t.render(Context({"photo": image}))
+        assert 'alt="some description"' in result
