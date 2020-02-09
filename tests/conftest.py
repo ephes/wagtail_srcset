@@ -11,7 +11,7 @@ from wagtail.images.models import Image as WagtailImage
 
 def create_small_rgb():
     # this is a small test jpeg
-    img = Image.new('RGB', (200, 200), (255, 0, 0, 0))
+    img = Image.new("RGB", (200, 200), (255, 0, 0, 0))
     return img
 
 

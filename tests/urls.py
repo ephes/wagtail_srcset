@@ -5,5 +5,5 @@ from django.conf.urls import url, include
 
 
 urlpatterns = [
-    url(r'^', include('wagtail_srcset.urls', namespace='wagtail_srcset')),
+    url(r"^", include("wagtail_srcset.urls", namespace="wagtail_srcset")),
 ]

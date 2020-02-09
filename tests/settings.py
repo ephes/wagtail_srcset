@@ -24,10 +24,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.admin",
     "django.contrib.messages",
-
     # for notebooks
     "django_extensions",
-
     # wagtail
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -40,10 +38,8 @@ INSTALLED_APPS = [
     "wagtail.search",
     "wagtail.admin",
     "wagtail.core",
-
     "modelcluster",
     "taggit",
-
     # wagtail_srcset
     "wagtail_srcset",
 ]
