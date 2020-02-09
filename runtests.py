@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-# -*- coding: utf-8
 from __future__ import unicode_literals, absolute_import
 
 import os
@@ -14,9 +12,9 @@ from django.core.management import call_command
 
 def run_tests(*test_args):
     if not test_args:
-        test_args = ['tests']
+        test_args = ["tests"]
 
-    os.environ['DJANGO_SETTINGS_MODULE'] = 'tests.settings'
+    os.environ["DJANGO_SETTINGS_MODULE"] = "tests.settings"
     django.setup()
     # call_command("migrate")
     TestRunner = get_runner(settings)
@@ -25,5 +23,5 @@ def run_tests(*test_args):
     sys.exit(bool(failures))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     run_tests(*sys.argv[1:])
