@@ -1,6 +1,5 @@
 import os
 import io
-import pytz
 import pytest
 
 from PIL import Image

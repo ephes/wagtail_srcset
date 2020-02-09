@@ -27,20 +27,8 @@ clean-pyc: ## remove Python file artifacts
 	find . -name '*.pyo' -exec rm -f {} +
 	find . -name '*~' -exec rm -f {} +
 
-lint: ## check style with flake8
-	flake8 wagtail_srcset tests
-
-test: ## run tests quickly with the default Python
-	python runtests.py tests
-
 test-all: ## run tests on every Python version with tox
 	tox
-
-coverage: ## check code coverage quickly with the default Python
-	coverage run --source wagtail_srcset runtests.py tests
-	coverage report -m
-	coverage html
-	open htmlcov/index.html
 
 docs: ## generate Sphinx HTML documentation, including API docs
 	rm -f docs/wagtail-srcset.rst

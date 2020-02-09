@@ -3,6 +3,9 @@ name = "wagtail-srcset"
 version = "0.1.0"
 description = ""
 authors = ["Jochen Wersdörfer <jochen@wersdoerfer.de>", "Johannes Spielmann <j@spielmannsolutions.com>"]
+packages = [
+    { include = "./commands.py" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"
@@ -18,7 +21,17 @@ django_extensions = "^2.2.7"
 pytest-django = "^3.8.0"
 django-environ = "^0.4.5"
 black = "^19.10b0"
+typer = "^0.0.8"
+
+[tool.poetry.scripts]
+test = "commands:test"
+pytest = "commands:pytest"
+flake8 = "commands:flake8"
+black = "commands:black"
+coverage = "commands:coverage"
+docs = "commands:docs"
 
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
+
