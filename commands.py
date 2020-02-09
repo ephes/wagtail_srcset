@@ -29,11 +29,11 @@ def print_styled_command(command):
     typer.echo(typer.style(" ".join(command), bold=True) + "\n")
 
 
-def run_command(command, debug=False):
+def run_command(command, debug=False, cwd=None):
     command = command.split()
     if debug:
         print_styled_command(command)
-    subprocess.run(command)
+    subprocess.run(command, cwd=cwd)
 
 
 @typer_cli
@@ -90,3 +90,9 @@ def docs():
         run_command(command, debug=True)
     file_url = "file://" + str(Path("docs/_build/html/index.html").resolve())
     webbrowser.open_new_tab(file_url)
+
+
+@typer_cli
+def notebook():
+    command = "python ../manage.py shell_plus --notebook"
+    run_command(command, cwd="notebooks", debug=True)
