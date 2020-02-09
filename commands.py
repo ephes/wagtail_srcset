@@ -1,3 +1,4 @@
+import os
 import typer
 import webbrowser
 import subprocess
@@ -29,11 +30,11 @@ def print_styled_command(command):
     typer.echo(typer.style(" ".join(command), bold=True) + "\n")
 
 
-def run_command(command, debug=False, cwd=None):
+def run_command(command, debug=False, cwd=None, env=None):
     command = command.split()
     if debug:
         print_styled_command(command)
-    subprocess.run(command, cwd=cwd)
+    subprocess.run(command, cwd=cwd, env=env)
 
 
 @typer_cli
@@ -94,5 +95,7 @@ def docs():
 
 @typer_cli
 def notebook():
+    env = os.environ.copy()
+    env["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
     command = "python ../manage.py shell_plus --notebook"
-    run_command(command, cwd="notebooks", debug=True)
+    run_command(command, cwd="notebooks", debug=True, env=env)
