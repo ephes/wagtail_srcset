@@ -5,6 +5,7 @@ description = ""
 authors = ["Jochen Wersdörfer <jochen@wersdoerfer.de>", "Johannes Spielmann <j@spielmannsolutions.com>"]
 packages = [
     { include = "./commands.py" },
+    { include = "wagtail_srcset", from = "src" },
 ]
 
 [tool.poetry.dependencies]
