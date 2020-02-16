@@ -4,7 +4,7 @@ from django.template import Context
 from django.template.base import Template
 
 
-from wagtail_srcset.templatetags.wagtail_srcset_tags import srcset_image as image_tag
+# from wagtail_srcset.templatetags.wagtail_srcset_tags import srcset_image as image_tag
 
 
 class TestWagtailImageTag:
