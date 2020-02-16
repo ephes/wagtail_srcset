@@ -30,14 +30,6 @@ clean-pyc: ## remove Python file artifacts
 test-all: ## run tests on every Python version with tox
 	tox
 
-docs: ## generate Sphinx HTML documentation, including API docs
-	rm -f docs/wagtail-srcset.rst
-	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ src/wagtail_srcset
-	$(MAKE) -C docs clean
-	$(MAKE) -C docs html
-	$(BROWSER) docs/_build/html/index.html
-
 release: clean ## package and upload a release
 	python setup.py sdist upload
 	python setup.py bdist_wheel upload
