@@ -25,6 +25,8 @@ class SrcSet:
     wagtail image tag resize-rule attributes, although it wouldn't
     make much sence to use fill-80x80 or scale-50 inside srcset.
     """
+    DEFAULT_WIDTHS = (2200, 1100, 768, 500, 300)
+    DEFAULT_SRCSET = [f"width-{dw}" for dw in DEFAULT_WIDTHS]
 
     def __init__(self, image_node):
         self.image_node = image_node
@@ -39,13 +41,7 @@ class SrcSet:
         if hasattr(settings, "DEFAULT_SRCSET_RENDITIONS"):
             return settings.DEFAULT_SRCSET_RENDITIONS
         else:
-            return [
-                "width-2200|jpegquality-60",
-                "width-1100|jpegquality-60",
-                "width-768|jpegquality-60",
-                "width-500|jpegquality-60",
-                "width-300|jpegquality-60",
-            ]
+            return self.DEFAULT_SRCSET
 
     def renditions_from_srcset(self, srcset):
         srcset = srcset.strip('"').strip("'")

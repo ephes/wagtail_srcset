@@ -1,10 +1,14 @@
+import re
 import pytest
 
 from django.template import Context
 from django.template.base import Template
 
+from wagtail_srcset.templatetags.wagtail_srcset_tags import SrcSet
 
-# from wagtail_srcset.templatetags.wagtail_srcset_tags import srcset_image as image_tag
+
+def extract_srcset_from_image_tag(tag):
+    return re.search(r'srcset="(?P<srcset>.*?)"', tag).group("srcset")
 
 
 class TestWagtailImageTag:
@@ -40,3 +44,14 @@ class TestSrcSetImageTag:
         t = Template(template_text)
         result = t.render(Context({"photo": image}))
         assert 'alt="some description"' in result
+
+    def test_empty_srcset_default(self, image):
+        template_text = """
+            {% load wagtail_srcset_tags %}
+            {% srcset_image photo width-300 %}
+        """
+        t = Template(template_text)
+        result = t.render(Context({"photo": image}))
+        srcset = extract_srcset_from_image_tag(result)
+        for dw in SrcSet.DEFAULT_WIDTHS:
+            assert str(dw) in srcset
