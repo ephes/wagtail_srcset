@@ -65,3 +65,14 @@ class TestSrcSetImageTag:
         result = t.render(Context({"photo": image}))
         srcset = extract_srcset_from_image_tag(result)
         assert "jpegquality-90" in srcset
+
+    def test_empty_srcset_inherits_jpegquality_from_tag_but_dont_overwrite(self, image):
+        template_text = """
+            {% load wagtail_srcset_tags %}
+            {% srcset_image photo width-300 jpegquality-90 srcset="width-600|jpegquality-40 width-300" %}
+        """
+        t = Template(template_text)
+        result = t.render(Context({"photo": image}))
+        srcset = extract_srcset_from_image_tag(result)
+        assert "jpegquality-40" in srcset
+        assert "jpegquality-90" in srcset
