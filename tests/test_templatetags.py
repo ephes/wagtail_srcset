@@ -71,6 +71,7 @@ class TestSrcSetImageTag:
         result = t.render(Context({"photo": image}))
         srcset = extract_srcset_from_image_tag(result)
         assert "jpegquality-40" in srcset
+        assert "jpegquality-90" not in srcset
 
     def test_use_first_operation(self, image):
         template_text = """
@@ -91,6 +92,5 @@ class TestSrcSetImageTag:
         t = Template(template_text)
         result = t.render(Context({"photo": image}))
         srcset = extract_srcset_from_image_tag(result)
-        print(srcset)
         assert "jpegquality-40" in srcset
         assert "jpegquality-30" not in srcset

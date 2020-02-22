@@ -58,7 +58,8 @@ class SrcSet:
             # inherit operations from tag if allowed and not already used
             # by the srcset attribute
             for operation in operations_from_tag:
-                if operation not in used:
+                name = operation.split("-")[0]
+                if name not in used:
                     operations.append(operation)
             filter_specs.append("|".join(operations))
         return filter_specs
