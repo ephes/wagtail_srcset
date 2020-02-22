@@ -76,3 +76,15 @@ class TestSrcSetImageTag:
         srcset = extract_srcset_from_image_tag(result)
         assert "jpegquality-40" in srcset
         assert "jpegquality-90" in srcset
+
+    def test_empty_srcset_with_settings(self, image, settings):
+        template_text = """
+            {% load wagtail_srcset_tags %}
+            {% srcset_image photo width-300 %}
+        """
+        t = Template(template_text)
+        width = "537"
+        settings.DEFAULT_SRCSET_RENDITIONS = [f"width-{width}"]
+        result = t.render(Context({"photo": image}))
+        srcset = extract_srcset_from_image_tag(result)
+        assert width in srcset
