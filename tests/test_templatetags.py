@@ -81,7 +81,7 @@ class TestSrcSetImageTag:
 class TestSrcSetImageTagSettings:
     pytestmark = pytest.mark.django_db
 
-    def test_empty_srcset_with_settings(self, image, settings):
+    def test_empty_srcset_with_default_renditions(self, image, settings):
         template_text = """
             {% load wagtail_srcset_tags %}
             {% srcset_image photo width-300 %}
