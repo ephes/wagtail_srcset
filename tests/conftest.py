@@ -4,9 +4,13 @@ import pytest
 
 from PIL import Image
 
+from django.template import Context
+from django.template.base import Template
 from django.core.files.uploadedfile import SimpleUploadedFile
 
 from wagtail.images.models import Image as WagtailImage
+
+from .utils import extract_srcset_from_image_tag
 
 
 def create_small_rgb():
@@ -34,10 +38,29 @@ def small_uploaded_file(small_jpeg_io):
     return simple_png
 
 
-@pytest.fixture
+@pytest.fixture()
 def image(small_uploaded_file):
     image = WagtailImage(file=small_uploaded_file)
     image.save()
     yield image
     # teardown
     os.unlink(image.file.path)
+
+
+@pytest.fixture()
+def srcset_template():
+    return """
+        {% load wagtail_srcset_tags %}
+        {% srcset_image photo width-300 %}
+    """
+
+
+@pytest.fixture()
+def rendered_result(srcset_template, image):
+    t = Template(srcset_template)
+    return t.render(Context({"photo": image}))
+
+
+@pytest.fixture()
+def rendered_srcset(rendered_result):
+    return extract_srcset_from_image_tag(rendered_result)
