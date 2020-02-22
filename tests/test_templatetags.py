@@ -77,6 +77,10 @@ class TestSrcSetImageTag:
         assert "jpegquality-40" in srcset
         assert "jpegquality-90" in srcset
 
+
+class TestSrcSetImageTagSettings:
+    pytestmark = pytest.mark.django_db
+
     def test_empty_srcset_with_settings(self, image, settings):
         template_text = """
             {% load wagtail_srcset_tags %}
