@@ -32,6 +32,8 @@ class SrcSet:
 
     def __init__(self, image_node):
         self.image_node = image_node
+        # need to set this inside __init__
+        self.srcset_attribute = self.image_node.attrs.get("srcset", None)
 
     def get_allowed_operations(self, filter_spec):
         operations = []
@@ -45,7 +47,7 @@ class SrcSet:
                 used_operations.add(name)
         return operations, used_operations
 
-    def filter_specs_from_srcset(self, srcset, operations_from_tag):
+    def filter_specs_from_srcset(self, srcset):
         srcset = srcset.strip('"').strip("'")
         return srcset.split(" ")
 
@@ -62,9 +64,8 @@ class SrcSet:
         return filter_specs
 
     def get_srcset_filter_specs(self, image):
-        srcset_attribute = self.image_node.attrs.get("srcset", None)
-        if srcset_attribute is not None and hasattr(srcset_attribute, "token"):
-            return self.filter_specs_from_srcset(srcset_attribute.token)
+        if self.srcset_attribute is not None:
+            return self.filter_specs_from_srcset(self.srcset_attribute.token)
         if hasattr(settings, "DEFAULT_SRCSET_RENDITIONS"):
             return settings.DEFAULT_SRCSET_RENDITIONS
         return self.DEFAULT_SRCSET_RENDITIONS
