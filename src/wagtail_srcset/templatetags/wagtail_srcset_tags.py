@@ -10,13 +10,22 @@ register = template.Library()
 @register.tag(name="srcset_image")
 def srcset_image(parser, token):
     image_node = image(parser, token)
-    print(image_node)
-    print(dir(image_node))
     image_node.attrs["srcset"] = SrcSet(image_node)
     return image_node
 
 
 class SrcSet:
+    """
+    Sets the srcset attribute of an image. You can either set it
+    explicitly like this:
+
+    {% srcset_image img width-600 srcset="width-1200 width-300" %}
+
+    Entries in the srcset attribute have the same syntax as normal
+    wagtail image tag resize-rule attributes, although it wouldn't
+    make much sence to use fill-80x80 or scale-50 inside srcset.
+    """
+
     def __init__(self, image_node):
         self.image_node = image_node
         srcset = image_node.attrs.get("srcset", None)
