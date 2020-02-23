@@ -26,11 +26,12 @@
   </head>
   <body>
     <div id="wrap">
-      <h1>Difference demo between native wagtail and wagtail_srcset image tag</h1>
+      <h1>Difference between native wagtail and wagtail_srcset image tag</h1>
       <h3>
-        Both images have a width of 600px. But 1px on an old device and 1px on a modern
-        high pixel density device like an phone, tablet or modern computer display are
-        not the same. 
+        Both images have a width of 600px browser pixels. But 1px on a legacy
+        device and 1px on a modern high pixel density device are not the same.
+        Phones, tablets or modern computer displays often use up to 3 hardware
+        pixels to show 1 browser pixel.
       </h3>
       <div id="left_col"> 
         <p>
@@ -41,9 +42,8 @@
           It looks blurry because the original image is at first scaled
           to 600px width by wagtail and stored in a image rendition. Then
           this 600px image is shown on a high pixel densitiy screen. Since
-          those screens use up to 3 times as much hardware pixels to display
-          those 600 browser pixels, the image is upscaled implicitly by a factor
-          of 2 to 3. Ouch.
+          those screens use more hardware pixels to display those 600 browser
+          pixels, the image is upscaled implicitly by a factor of 2 to 3. Ouch.
         </p>
         {% image img width-600 %}
       </div>
@@ -56,9 +56,10 @@
           which should be sharper on modern
           display devices, because now 1 browser image pixel should roughly
           map to one pixel on the device again. We present the browser with
-          different images size alternatives and the browser chooses the most
+          different image size alternatives and the browser chooses the most
           appropriate size for it's devices pixel densitiy which could mean
-          that a 1800px width image is displayed for a 600px width image.
+          that a 1800px width image is displayed for a 600 browser pixel width
+          image.
         </p>
         {% srcset_image img width-600 %}
       </div>
