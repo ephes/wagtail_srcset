@@ -16,6 +16,22 @@ wagtail-srcset
 
 HTML5 image srcset support for Wagtail
 
+What is this all about?
+-----------------------
+I tried to use wagtail as a basis for a personal blog engine (yeah I know).
+Playing around with some images I noticed that they looked not as sharp as
+on my old page and I wondered why. Finally I found out that wagtail images
+with width-600 for exmple are implicitly upscaled on modern display devices.
+For a more detailed description and demonstration with an actual image,
+take a look at the image below and maybe view it at 100% scale.
+
+.. _wagtail: https://https://wagtail.io/
+.. image:: https://github.com/ephes/wagtail_srcset/raw/master/example/media/wagtail_srcset.jpg
+
+This package aims to provide a new image tag for wagtail that produces sharp
+looking images by generating a srcset attribute that includes larger images
+for higher pixel density devices.
+
 Documentation
 -------------
 
@@ -34,31 +50,29 @@ Add it to your `INSTALLED_APPS`:
 
     INSTALLED_APPS = (
         ...
-        'wagtail_srcset.apps.WagtailSrcsetConfig',
+        "wagtail_srcset.apps.WagtailSrcsetConfig",
         ...
     )
 
-Add wagtail-srcset's URL patterns:
+Use it in your templates:
 
 .. code-block:: python
 
-    from wagtail_srcset import urls as wagtail_srcset_urls
-
-
-    urlpatterns = [
-        ...
-        url(r'^', include(wagtail_srcset_urls)),
-        ...
-    ]
-
-Image
------
-.. image:: https://github.com/ephes/wagtail_srcset/raw/master/example/media/wagtail_srcset.jpg
+    {% load wagtail_srcset_tags %}
+    {% srcset_image img width-600 %}
 
 Features
 --------
 
-* TODO
+* Generate srcset attribute dynamically, based on the size of an image and
+  the width attribute of the template tag if SRCSET_DYNAMIC is True
+* You can specify default images sizes in DEFAULT_SRCSET_RENDITIONS
+* wagtails WAGTAILIMAGES_JPEG_QUALITY is used for jpeg quality when set
+
+Todo
+----
+
+* Dont just support the width resize-rule add fill, max, min etc
 
 Running Tests
 -------------
@@ -67,9 +81,17 @@ Does the code actually work?
 
 ::
 
-    source <YOURVIRTUALENV>/bin/activate
-    (myenv) $ pip install tox
-    (myenv) $ tox
+    git clone https://github.com/ephes/wagtail_srcset.git
+    cd wagtail_srcset
+    poetry install
+    poetry run test
+
+Running the Example App
+-----------------------
+
+::
+    poetry shell
+    python manage.py runserver --settings example.settings 0.0:8000
 
 Credits
 -------
