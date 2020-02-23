@@ -28,9 +28,17 @@ take a look at the image below and maybe view it at 100% scale.
 .. _wagtail: https://https://wagtail.io/
 .. image:: https://github.com/ephes/wagtail_srcset/raw/master/example/media/wagtail_srcset.jpg
 
+Here are two amplified sections, to make the difference more visible:
+
+.. image:: https://github.com/ephes/wagtail_srcset/raw/master/example/media/ape_blurry.jpg
+.. image:: https://github.com/ephes/wagtail_srcset/raw/master/example/media/ape_sharp.jpg
+
 This package aims to provide a new image tag for wagtail that produces sharp
 looking images by generating a srcset attribute that includes larger images
 for higher pixel density devices.
+
+If you are concerned about the increased image size I would recommend to use
+more aggressive lossy compression instead of upscaling.
 
 Documentation
 -------------
