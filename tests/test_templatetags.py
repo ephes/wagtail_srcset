@@ -5,6 +5,7 @@ from django.template.base import Template
 
 from wagtail_srcset.templatetags.wagtail_srcset_tags import SrcSet
 
+from .utils import FakeImage
 from .utils import extract_srcset_from_image_tag
 
 
@@ -94,3 +95,29 @@ class TestSrcSetImageTag:
         srcset = extract_srcset_from_image_tag(result)
         assert "jpegquality-40" in srcset
         assert "jpegquality-30" not in srcset
+
+
+class TestSrcSetDynamicSizes:
+    pytestmark = pytest.mark.django_db
+
+    def test_srcset_tag_default_scales(self, settings):
+        settings.SRCSET_DYNAMIC = True
+        fake_image = FakeImage(900, "max-300x200", {})
+        srcset = SrcSet(fake_image)
+        filter_specs = srcset.get_srcset_filter_specs(fake_image)
+        assert fake_image.width == int(filter_specs[0].split("-")[-1])
+
+    def test_srcset_tag_max_image_width(self, settings):
+        settings.SRCSET_DYNAMIC = True
+        fake_image = FakeImage(900, "width-600", {})
+        srcset = SrcSet(fake_image)
+        filter_specs = srcset.get_srcset_filter_specs(fake_image)
+        assert fake_image.width == int(filter_specs[0].split("-")[-1])
+
+    def test_srcset_tag_max_3_times_tag_width(self, settings):
+        settings.SRCSET_DYNAMIC = True
+        tag_width = 600
+        fake_image = FakeImage(2800, f"width-{tag_width}", {})
+        srcset = SrcSet(fake_image)
+        filter_specs = srcset.get_srcset_filter_specs(fake_image)
+        assert tag_width * 3 == int(filter_specs[0].split("-")[-1])

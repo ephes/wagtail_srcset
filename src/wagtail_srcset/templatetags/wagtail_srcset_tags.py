@@ -64,11 +64,35 @@ class SrcSet:
             filter_specs.append("|".join(operations))
         return filter_specs
 
+    def get_default_scale_factors(self):
+        max_width = max(self.DEFAULT_WIDTHS)
+        return [dw / max_width for dw in self.DEFAULT_WIDTHS]
+
+    def get_maximum_width(self, image):
+        max_useful_width = image.width
+        for operation in self.image_node.filter_spec.split("|"):
+            name, rest = operation.split("-")
+            if name == "width" and len(rest) > 0:
+                # if width-300 is set, there's no point serving
+                # a 2800px image - limit to 900px instead
+                max_useful_width = int(rest) * 3
+        return min(image.width, max_useful_width)
+
+    def calc_filter_specs(self, image):
+        max_width = self.get_maximum_width(image)
+        filter_specs = []
+        for scale in self.get_default_scale_factors():
+            width = int(scale * max_width)
+            filter_specs.append(f"width-{width}")
+        return filter_specs
+
     def get_srcset_filter_specs(self, image):
         if self.srcset_attribute is not None:
             return self.filter_specs_from_srcset(self.srcset_attribute.token)
         if hasattr(settings, "DEFAULT_SRCSET_RENDITIONS"):
             return settings.DEFAULT_SRCSET_RENDITIONS
+        if getattr(settings, "SRCSET_DYNAMIC", False):
+            return self.calc_filter_specs(image)
         return self.DEFAULT_SRCSET_RENDITIONS
 
     def get_merged_filter_specs(self, image):
