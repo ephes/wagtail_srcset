@@ -5,11 +5,11 @@ wagtail-srcset
 .. image:: https://badge.fury.io/py/wagtail-srcset.svg
     :target: https://badge.fury.io/py/wagtail-srcset
 
-.. image:: https://travis-ci.org/ephes/wagtail-srcset.svg?branch=master
-    :target: https://travis-ci.org/ephes/wagtail-srcset
+.. image:: https://travis-ci.org/ephes/wagtail_srcset.svg?branch=master
+    :target: https://travis-ci.org/ephes/wagtail_srcset
 
-.. image:: https://codecov.io/gh/ephes/wagtail-srcset/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/ephes/wagtail-srcset
+.. image:: https://codecov.io/gh/ephes/wagtail_srcset/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/ephes/wagtail_srcset
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
     :target: https://github.com/ephes/wagtail-srcset
