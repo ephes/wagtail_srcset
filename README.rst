@@ -50,7 +50,7 @@ Add wagtail-srcset's URL patterns:
 
 Image
 -----
-.. image:: https://github.com/ephes/wagtail_srcset/raw/master/example/media/wagtail_srcset.png
+.. image:: https://github.com/ephes/wagtail_srcset/raw/master/example/media/wagtail_srcset.jpg
 
 Features
 --------
