@@ -48,6 +48,11 @@ Add wagtail-srcset's URL patterns:
         ...
     ]
 
+Image
+-----
+![Image of two apes](https://github.com/ephes/wagtail_srcset/tree/master/example/media/wagtail_srcset.jpg)
+
+
 Features
 --------
 
