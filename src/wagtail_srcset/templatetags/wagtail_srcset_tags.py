@@ -26,6 +26,7 @@ class SrcSet:
     sence to use fill-80x80 or scale-50 inside srcset. At the moment
     width and jpegquality are the only supported operations.
     """
+
     ALLOWED_OPERATIONS = {"width", "jpegquality"}
     DEFAULT_WIDTHS = (2200, 1100, 768, 500, 300)
     DEFAULT_SRCSET_RENDITIONS = [f"width-{dw}" for dw in DEFAULT_WIDTHS]
@@ -97,7 +98,9 @@ class SrcSet:
 
     def get_merged_filter_specs(self, image):
         srcset_filter_specs = self.get_srcset_filter_specs(image)
-        operations_from_tag, _ = self.get_allowed_operations(self.image_node.filter_spec)
+        operations_from_tag, _ = self.get_allowed_operations(
+            self.image_node.filter_spec
+        )
         return self.merge_filter_specs(srcset_filter_specs, operations_from_tag)
 
     def resolve(self, context):
