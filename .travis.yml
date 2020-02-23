@@ -13,7 +13,7 @@ before_install:
   - pip install poetry
 
 install:
-  - poetry install --dev
+  - poetry install
 
 matrix:
   fast_finish: true
