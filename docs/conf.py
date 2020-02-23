@@ -48,7 +48,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'wagtail-srcset'
-copyright = u'2019, Johannes Spielmann'
+copyright = u'2019, Jochen Wersdöerfer'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
