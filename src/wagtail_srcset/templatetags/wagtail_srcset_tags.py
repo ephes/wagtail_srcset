@@ -34,6 +34,10 @@ class SrcSet:
 
     {% srcset_image img width-600 srcset="width-1200 width-300" %}
 
+    Or leave it out and let it be set automatically:
+
+    {% srcset_image img width-600 %}
+
     Entries in the srcset attribute have the same syntax as normal
     wagtail image tag filter specs, although it wouldn't make much
     sence to use fill-80x80 or scale-50 inside srcset. At the moment
