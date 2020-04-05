@@ -10,20 +10,33 @@ from wagtail.images.templatetags.wagtailimages_tags import image
 register = template.Library()
 
 
-def render_patched(self, context):
-    result = self._original_render(context)
-    if self.output_var_name:
-        rendition = context[self.output_var_name]
-        rendition.srcset_string = self.attrs["srcset"].resolve(context)
-    return result
+def monkeypatch_wagtail_as_syntax(image_node):
+    """
+    If you use wagtails 'as' syntax like this:
+
+    {% srcset_image photo width-300 as thumbnail %}
+
+    image_node["attrs"] are not resolved. This patch resolves
+    srcset and attaches it to the returned rendition. It's a
+    bit hacky but should work.
+    """
+    def render_patched(self, context):
+        result = self._original_render(context)
+        if self.output_var_name:
+            rendition = context[self.output_var_name]
+            rendition.srcset = self.attrs["srcset"].resolve(context)
+        return result
+
+    image_node._original_render = image_node.render
+    image_node.render = types.MethodType(render_patched, image_node)
+    return image_node
 
 
 @register.tag(name="srcset_image")
 def srcset_image(parser, token):
     image_node = image(parser, token)
     image_node.attrs["srcset"] = SrcSet(image_node)
-    image_node._original_render = image_node.render
-    image_node.render = types.MethodType(render_patched, image_node)
+    image_node = monkeypatch_wagtail_as_syntax(image_node)
     return image_node
 
 

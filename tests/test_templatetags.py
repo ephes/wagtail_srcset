@@ -121,3 +121,17 @@ class TestSrcSetDynamicSizes:
         srcset = SrcSet(fake_image)
         filter_specs = srcset.get_srcset_filter_specs(fake_image)
         assert tag_width * 3 == int(filter_specs[0].split("-")[-1])
+
+
+class TestSrcSetImageTagAsSyntax:
+    pytestmark = pytest.mark.django_db
+
+    def test_rendition_has_srcset_attribute(self, image):
+        template_text = """
+            {% load wagtail_srcset_tags %}
+            {% srcset_image photo width-300 as thumbnail %}
+            {{ thumbnail.srcset }}
+        """
+        t = Template(template_text)
+        result = t.render(Context({"photo": image}))
+        assert "width-300.jpg" in result
