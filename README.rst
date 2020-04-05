@@ -40,6 +40,14 @@ Use it in your templates:
     {% load wagtail_srcset_tags %}
     {% srcset_image img width-600 %}
 
+Or via wagtails "as" syntax:
+
+.. code-block:: python
+
+    {% load wagtail_srcset_tags %}
+    {% srcset_image img width-60 as thumbnail %}
+    <img id="img-{{ img.pk }}" src="{{ thumbnail.url }}" srcset="{{ thumbnail.srcset }}" />
+
 Features
 --------
 
