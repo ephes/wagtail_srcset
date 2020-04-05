@@ -1,16 +1,29 @@
+import types
+
 from django import template
 from django.conf import settings
 
+from wagtail.images.shortcuts import get_rendition_or_not_found
 from wagtail.images.templatetags.wagtailimages_tags import image
 
 
 register = template.Library()
 
 
+def render_patched(self, context):
+    result = self._original_render(context)
+    if self.output_var_name:
+        rendition = context[self.output_var_name]
+        rendition.srcset_string = self.attrs["srcset"].resolve(context)
+    return result
+
+
 @register.tag(name="srcset_image")
 def srcset_image(parser, token):
     image_node = image(parser, token)
     image_node.attrs["srcset"] = SrcSet(image_node)
+    image_node._original_render = image_node.render
+    image_node.render = types.MethodType(render_patched, image_node)
     return image_node
 
 
