@@ -46,7 +46,9 @@ Or via wagtails "as" syntax:
 
     {% load wagtail_srcset_tags %}
     {% srcset_image img width-60 as thumbnail %}
-    <img id="img-{{ img.pk }}" src="{{ thumbnail.url }}" srcset="{{ thumbnail.srcset }}" />
+    <a href="{{ thumbnail.original }}">
+      <img id="img-{{ img.pk }}" src="{{ thumbnail.url }}" srcset="{{ thumbnail.srcset }}" />
+    </a>
 
 Features
 --------

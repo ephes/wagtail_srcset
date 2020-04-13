@@ -25,6 +25,7 @@ def monkeypatch_wagtail_as_syntax(image_node):
         if self.output_var_name:
             rendition = context[self.output_var_name]
             rendition.srcset = self.attrs["srcset"].resolve(context)
+            rendition.original = self.attrs["srcset"].original_url
         return result
 
     image_node._original_render = image_node.render
@@ -134,10 +135,14 @@ class SrcSet:
         return self.merge_filter_specs(srcset_filter_specs, operations_from_tag)
 
     def resolve(self, context):
-        image = self.image_node.image_expr.resolve(context)
+        self.resolved_image = image = self.image_node.image_expr.resolve(context)
         out_renditions = []
         for filter_spec in self.get_merged_filter_specs(image):
             rendered_image = image.get_rendition(filter_spec)
             out_renditions.append(f"{rendered_image.url} {rendered_image.width}w")
         srcset_string = ", ".join(out_renditions)
         return srcset_string
+
+    @property
+    def original_url(self):
+        return self.resolved_image.file.url

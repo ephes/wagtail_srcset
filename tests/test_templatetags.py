@@ -135,3 +135,13 @@ class TestSrcSetImageTagAsSyntax:
         t = Template(template_text)
         result = t.render(Context({"photo": image}))
         assert "width-300.jpg" in result
+
+    def test_rendition_has_original_attribute(self, image):
+        template_text = """
+            {% load wagtail_srcset_tags %}
+            {% srcset_image photo width-300 as thumbnail %}
+            {{ thumbnail.original }}
+        """
+        t = Template(template_text)
+        result = t.render(Context({"photo": image}))
+        assert "original_images" in result
