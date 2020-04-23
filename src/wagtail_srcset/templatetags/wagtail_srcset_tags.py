@@ -3,7 +3,6 @@ import types
 from django import template
 from django.conf import settings
 
-from wagtail.images.shortcuts import get_rendition_or_not_found
 from wagtail.images.templatetags.wagtailimages_tags import image
 
 
