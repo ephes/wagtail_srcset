@@ -56,7 +56,7 @@ copyright = u'2019, Jochen Wersdöerfer'
 #
 # The short X.Y version.
 # version = wagtail_srcset.__version__
-version = "0.1.1"
+version = "0.1.4"
 # The full version, including alpha/beta/rc tags.
 # release = wagtail_srcset.__version__
 release = version

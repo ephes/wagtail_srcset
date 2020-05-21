@@ -2,6 +2,12 @@
 
 History
 -------
+0.1.4 (2020-05-21)
+++++++++++++++++++
+
+* Bumped down python requirement to 3.6 (since f-strings are used) - requeste by CVYY39
+* Updated dependencies
+
 0.1.3 (2020-04-13)
 ++++++++++++++++++
 
