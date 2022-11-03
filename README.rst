@@ -113,3 +113,40 @@ Running the Example App
 
     # activate virtualenv where wagtail_srcset is installed
     python manage.py runserver --settings example.settings 0.0:8000
+
+Run Linter
+----------
+
+::
+
+    # activate virtualenv where wagtail_srcset is installed
+    flake8 wagtail_srcset tests
+
+Coverage
+--------
+
+::
+
+    # activate virtualenv where wagtail_srcset is installed
+    pytest --cov=wagtail_srcset --cov-report=html
+
+Start a Notebook Server
+-----------------------
+
+::
+
+        # activate virtualenv where wagtail_srcset is installed
+        DJANGO_ALLOW_ASYNC_UNSAFE=true python manage.py shell_plus --notebook
+
+
+Build Documentation
+-------------------
+
+::
+
+        # activate virtualenv where wagtail_srcset is installed
+        rm docs/modules.rst docs/wagtail_srcset.rst
+        sphinx-apidoc -o docs/ wagtail_srcset
+        make -C docs clean
+        make -C docs html
+        open docs/_build/html/index.html
