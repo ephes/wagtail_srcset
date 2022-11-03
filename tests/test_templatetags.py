@@ -1,12 +1,10 @@
 import pytest
-
 from django.template import Context
 from django.template.base import Template
 
 from wagtail_srcset.templatetags.wagtail_srcset_tags import SrcSet
 
-from .utils import FakeImage
-from .utils import extract_srcset_from_image_tag
+from .utils import FakeImage, extract_srcset_from_image_tag
 
 
 class TestWagtailImageTag:
@@ -134,7 +132,7 @@ class TestSrcSetImageTagAsSyntax:
         """
         t = Template(template_text)
         result = t.render(Context({"photo": image}))
-        assert "width-300.jpg" in result
+        assert "width-300" in result
 
     def test_rendition_has_original_attribute(self, image):
         template_text = """
