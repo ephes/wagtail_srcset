@@ -24,6 +24,7 @@ repos:
     hooks:
       - id: black
         language_version: python3.11
+        exclude: ^docs
   - repo: https://github.com/timothycrosley/isort
     # isort config in pyproject.toml does not work FIXME
     rev: 5.10.1
