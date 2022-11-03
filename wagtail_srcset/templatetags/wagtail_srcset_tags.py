@@ -2,9 +2,7 @@ import types
 
 from django import template
 from django.conf import settings
-
 from wagtail.images.templatetags.wagtailimages_tags import image
-
 
 register = template.Library()
 
@@ -19,6 +17,7 @@ def monkeypatch_wagtail_as_syntax(image_node):
     srcset and attaches it to the returned rendition. It's a
     bit hacky but should work.
     """
+
     def render_patched(self, context):
         result = self._original_render(context)
         if self.output_var_name:
