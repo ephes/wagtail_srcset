@@ -2,6 +2,13 @@
 
 History
 -------
+0.2.0 (2022-11-03)
+++++++++++++++++++
+
+* Replace poetry with flit
+* Make tox run tests with flit for last 3 Python versions
+* Updated dependencies
+
 0.1.5 (2020-05-21)
 ++++++++++++++++++
 
