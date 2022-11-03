@@ -20,6 +20,7 @@ lib64/
 parts/
 sdist/
 var/
+venv/
 wheels/
 *.egg-info/
 .installed.cfg
@@ -290,4 +291,4 @@ secrets.env
 # docs
 
 docs/modules.rst
-docs/wagtail_srcset.rst 
+docs/wagtail_srcset.rst
