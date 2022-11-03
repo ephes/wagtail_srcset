@@ -5,10 +5,10 @@ wagtail-srcset
 .. image:: https://badge.fury.io/py/wagtail-srcset.svg
     :target: https://badge.fury.io/py/wagtail-srcset
 
-.. image:: https://travis-ci.org/ephes/wagtail_srcset.svg?branch=master
+.. image:: https://travis-ci.org/ephes/wagtail_srcset.svg?branch=main
     :target: https://travis-ci.org/ephes/wagtail_srcset
 
-.. image:: https://codecov.io/gh/ephes/wagtail_srcset/branch/master/graph/badge.svg
+.. image:: https://codecov.io/gh/ephes/wagtail_srcset/branch/main/graph/badge.svg
     :target: https://codecov.io/gh/ephes/wagtail_srcset
 
 .. image:: https://img.shields.io/badge/code%20style-black-000000.svg
@@ -78,12 +78,12 @@ For a more detailed description and demonstration with an actual image,
 take a look at the image below and maybe view it at 100% scale.
 
 .. _wagtail: https://https://wagtail.io/
-.. image:: https://github.com/ephes/wagtail_srcset/raw/master/example/media/wagtail_srcset.jpg
+.. image:: https://github.com/ephes/wagtail_srcset/raw/main/example/media/wagtail_srcset.jpg
 
 Here are two amplified sections, to make the difference more visible:
 
-.. image:: https://github.com/ephes/wagtail_srcset/raw/master/example/media/ape_blurry.jpg
-.. image:: https://github.com/ephes/wagtail_srcset/raw/master/example/media/ape_sharp.jpg
+.. image:: https://github.com/ephes/wagtail_srcset/raw/main/example/media/ape_blurry.jpg
+.. image:: https://github.com/ephes/wagtail_srcset/raw/main/example/media/ape_sharp.jpg
 
 This package aims to provide a new image tag for wagtail that produces sharp
 looking images by generating a srcset attribute that includes larger images
