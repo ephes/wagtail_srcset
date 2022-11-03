@@ -1,0 +1,6 @@
+[flake8]
+statistics = true
+ignore = D203, W503
+exclude = docs,.git,__pycache__,notebooks,requirements
+max-complexity = 10
+max-line-length = 120
