@@ -1,6 +1,3 @@
-# -*- coding: utf-8
-from __future__ import unicode_literals, absolute_import
-
 import environ
 
 ROOT_DIR = environ.Path(__file__) - 1
