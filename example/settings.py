@@ -1,6 +1,3 @@
-# -*- coding: utf-8
-from __future__ import unicode_literals, absolute_import
-
 import environ
 
 ROOT_DIR = environ.Path(__file__) - 1
@@ -41,7 +38,7 @@ INSTALLED_APPS = [
     "wagtail.core",
     "modelcluster",
     "taggit",
-    # wagtail_srcset
+    # wagtail-srcset
     "wagtail_srcset",
     "example",
 ]
@@ -56,7 +53,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "wagtail.core.middleware.SiteMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
 ]
 
@@ -71,7 +67,7 @@ STATIC_ROOT = str(ROOT_DIR("staticfiles"))
 STATIC_URL = "/static/"
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-STATICFILES_DIRS = [str(APPS_DIR.path("static"))]
+STATICFILES_DIRS = [str(ROOT_DIR.path("static"))]
 
 # See: https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-finders
 STATICFILES_FINDERS = [
@@ -122,5 +118,6 @@ TEMPLATES = [
     }
 ]
 
-TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
+TEMPLATES[0]["OPTIONS"]["debug"] = DEBUG
 WAGTAILIMAGES_JPEG_QUALITY = 90
+WAGTAILADMIN_BASE_URL = "/cms"
