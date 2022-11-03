@@ -150,3 +150,12 @@ Build Documentation
         make -C docs clean
         make -C docs html
         open docs/_build/html/index.html
+
+
+Publish Package
+---------------
+
+::
+
+    # activate virtualenv where wagtail_srcset is installed
+    flit publish
