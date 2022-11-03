@@ -5,9 +5,6 @@ wagtail-srcset
 .. image:: https://badge.fury.io/py/wagtail-srcset.svg
     :target: https://badge.fury.io/py/wagtail-srcset
 
-.. image:: https://travis-ci.org/ephes/wagtail_srcset.svg?branch=main
-    :target: https://travis-ci.org/ephes/wagtail_srcset
-
 .. image:: https://codecov.io/gh/ephes/wagtail_srcset/branch/main/graph/badge.svg
     :target: https://codecov.io/gh/ephes/wagtail_srcset
 
@@ -101,10 +98,12 @@ Does the code actually work?
 
 ::
 
+    # create a virtualenv and activate it
     git clone https://github.com/ephes/wagtail_srcset.git
     cd wagtail_srcset
-    poetry install
-    poetry run test
+    python -m pip install flit
+    flit install -s
+    pytest
 
 Running the Example App
 -----------------------
@@ -112,16 +111,5 @@ Running the Example App
 
 ::
 
-    poetry shell
+    # activate virtualenv where wagtail_srcset is installed
     python manage.py runserver --settings example.settings 0.0:8000
-
-Credits
--------
-
-Tools used in rendering this package:
-
-*  Cookiecutter_
-*  `cookiecutter-djangopackage`_
-
-.. _Cookiecutter: https://github.com/audreyr/cookiecutter
-.. _`cookiecutter-djangopackage`: https://github.com/pydanny/cookiecutter-djangopackage

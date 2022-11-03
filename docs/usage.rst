@@ -8,7 +8,7 @@ To use wagtail-srcset in a project, add it to your `INSTALLED_APPS`:
 
     INSTALLED_APPS = (
         ...
-        'wagtail_srcset.apps.WagtailSrcsetConfig',
+        "wagtail_srcset.apps.WagtailSrcsetConfig",
         ...
     )
 
@@ -21,6 +21,6 @@ Add wagtail-srcset's URL patterns:
 
     urlpatterns = [
         ...
-        url(r'^', include(wagtail_srcset_urls)),
+        path("", include(wagtail_srcset_urls)),
         ...
     ]
