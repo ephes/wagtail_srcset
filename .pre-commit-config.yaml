@@ -37,6 +37,7 @@ repos:
     hooks:
       - id: flake8
         language_version: python3
+        exclude: ^docs
   - repo: https://github.com/rtts/djhtml
     rev: "v1.5.2"  # replace with the latest tag on GitHub
     hooks:
