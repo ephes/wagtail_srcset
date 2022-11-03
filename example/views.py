@@ -1,5 +1,4 @@
 from django.views.generic import TemplateView
-
 from wagtail.images.models import Image as WagtailImage
 
 
