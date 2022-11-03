@@ -1,13 +1,11 @@
-import os
 import io
+import os
+
 import pytest
-
-from PIL import Image
-
+from django.core.files.uploadedfile import SimpleUploadedFile
 from django.template import Context
 from django.template.base import Template
-from django.core.files.uploadedfile import SimpleUploadedFile
-
+from PIL import Image
 from wagtail.images.models import Image as WagtailImage
 
 from .utils import extract_srcset_from_image_tag
