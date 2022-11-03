@@ -1,9 +1,5 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals, absolute_import
-
-from django.conf.urls import url, include
-
+from django.urls import include, path
 
 urlpatterns = [
-    url(r"^", include("wagtail_srcset.urls", namespace="wagtail_srcset")),
+    path("", include("wagtail_srcset.urls", namespace="wagtail_srcset")),
 ]
