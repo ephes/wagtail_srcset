@@ -1,5 +1,6 @@
 import io
 import os
+import shutil
 
 import pytest
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -62,3 +63,15 @@ def rendered_result(srcset_template, image):
 @pytest.fixture()
 def rendered_srcset(rendered_result):
     return extract_srcset_from_image_tag(rendered_result)
+
+
+@pytest.fixture(scope="session", autouse=True)
+def remove_stale_media_files():
+    # runs before test starts
+    yield
+    # runs after test ends
+    # cannot use function scoped settings fixture, so import settings
+    from django.conf import settings
+
+    shutil.rmtree(settings.MEDIA_ROOT, ignore_errors=True)
+
