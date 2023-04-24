@@ -94,7 +94,7 @@ class SrcSet:
         """
         filter_specs = []
         for filter_spec in srcset_filter_specs:
-            operations, used = self.get_allowed_operations([filter_spec])
+            operations, used = self.get_allowed_operations(filter_spec.split("|"))
             # inherit operations from tag if allowed and not already used
             # by the srcset attribute
             for operation in operations_from_tag:
