@@ -5,6 +5,12 @@ wagtail-srcset
 .. image:: https://badge.fury.io/py/wagtail-srcset.svg
     :target: https://badge.fury.io/py/wagtail-srcset
 
+.. image:: https://img.shields.io/badge/python-3.9%7C3.10%7C3.11-brightgreen
+    :target: https://img.shields.io/badge/python-3.9%7C3.10%7C3.11-brightgreen
+
+.. image:: https://img.shields.io/badge/wagtail-3%7C4%7C5-brightgreen
+    :target: https://img.shields.io/badge/wagtail-3%7C4%7C5-brightgreen
+
 .. image:: https://codecov.io/gh/ephes/wagtail_srcset/branch/main/graph/badge.svg
     :target: https://codecov.io/gh/ephes/wagtail_srcset
 
