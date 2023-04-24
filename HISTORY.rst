@@ -2,6 +2,19 @@
 
 History
 -------
+
+0.3.0 (2023-04-24)
+++++++++++++++++++
+
+* Add support for Wagtail>=5
+* Drop support for Wagtail<3.0
+* Added workaround for image_node.filter_spec -> image_node.filter_specs change in Wagtail 5
+* Some small spelling fixes and extended docstrings
+* pre-commit autoupdate
+* make tox check against python (3.9, 3.10, 3.11) and wagtail (3, 4, 5)
+* fixed codecov.io workflow
+* added supported python and wagtail versions to readme via badges
+
 0.2.0 (2022-11-03)
 ++++++++++++++++++
 
