@@ -49,6 +49,7 @@ dev = [
     "django_extensions",
     "isort",
     "jupyter",
+    "jupyter-server < 2.0.0",
     "tox",
     "typer",
 ]
