@@ -83,6 +83,27 @@ MEDIA_ROOT = str(ROOT_DIR("media"))
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#media-url
 MEDIA_URL = "/media/"
 
+# Jupyter notebook stuff
+PATH_TO_NOTEBOOK_DIR = "notebooks"
+try:
+    import jupyterlab  # noqa
+
+    notebook_default_url = "/lab"  # Using JupyterLab
+except ImportError:
+    notebook_default_url = "/tree"  # Using Jupyter
+
+NOTEBOOK_ARGUMENTS = [
+    "--ip",
+    "127.0.0.1",
+    "--port",
+    "8888",
+    "--notebook-dir",
+    PATH_TO_NOTEBOOK_DIR,
+    "--NotebookApp.default_url",
+    notebook_default_url,
+]
+IPYTHON_KERNEL_DISPLAY_NAME = "Django Kernel"
+
 
 # TEMPLATE CONFIGURATION
 # ------------------------------------------------------------------------------

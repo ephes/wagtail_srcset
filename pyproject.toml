@@ -49,10 +49,13 @@ dev = [
     "django_extensions",
     "isort",
     "jupyter",
-    "jupyter-server",
+    "jupyterlab",
+    "jupyter-server < 2.0.0",
+    "notebook",
     "pyzmq >= 25.1.1",
     "setuptools",
     "tox",
+    "traitlets < 5.10.0",  # https://github.com/microsoft/azuredatastudio/issues/24436  - jupyterlab wont work
     "typer",
 ]
 
