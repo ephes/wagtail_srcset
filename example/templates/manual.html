@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Manual Images</title>
+    <style>
+      .thumbnail {
+        width: 100px;  /* Adjust the width as needed */
+        height: auto;  /* This keeps the aspect ratio intact */
+        margin-right: 10px;
+      }
+      picture {
+        display: inline-block; /* This makes the picture behave like an image */
+        margin-right: 10px;   /* Adds space to the right of each picture */
+      }
+
+      picture img {
+        width: 100px;  /* Adjust the width as needed */
+        height: auto;  /* This keeps the aspect ratio intact */
+      }
+    </style>
+
+  </style>
+</head>
+<body>
+  <main>
+    <script>
+      function displayImageSource(imageIds, pictureTag = false) {
+        for (const id of imageIds) {
+          const imgElement = document.getElementById(id);
+          let pictureElement = null;
+          if (pictureTag) {
+            pictureElement = imgElement.parentElement;
+          }
+          const imgName = imgElement.currentSrc.split('/').pop();
+
+        // image description
+          let imgSpan = document.getElementById(`${id}-description`);
+          imgSpan.innerText = imgName;
+
+        // image html
+          let imgHtml = document.getElementById(`${id}-html`);
+          if (pictureElement) {
+            imgHtml.innerText = pictureElement.outerHTML;
+          } else {
+            imgHtml.innerText = imgElement.outerHTML;
+          }
+        }
+      }
+    </script>
+    <h1>Comparing Images Manually</h1>
+    <p>
+      We compare plain image to image with srcset and sizes attribute.
+      Also picture tag with source and img tag.
+    </p>
+    <section>
+      <h2>Just a normal image tag without and with srcset attribute set but no sizes</h2>
+      <p>
+        The thumbnail has a width of 53px and a height of 80px.
+
+        The srcset attribute has three additional images with a width of 106px, 159px and 265px.
+        Since the sizes attribute is not set, the browser should load the image with a width of 265px.
+      </p>
+      <img id="image-1-1" class="thumbnail" src="/media/manual/1_53x80.jpeg" alt="img original thumbnail">
+      <img
+        srcset="
+                /media/manual/1_53x80.jpeg 53w,
+                /media/manual/1_106x160.jpeg 106w,
+                /media/manual/1_159x240.jpeg 159w,
+                /media/manual/1_265x400.jpeg 265w,
+               "
+        src="/media/manual/1_265x400.jpeg"
+        class="thumbnail"
+        alt="img thumbnail with srcset"
+        id="image-1-2"
+      >
+      <div id="image-1-1-container">
+        <h3>First Image</h3>
+        <pre id="image-1-1-html"></pre>
+        Selected image source: <b><span id="image-1-1-description"></span></b>
+      </div>
+      <div id="image-1-2-container">
+        <h3>Second Image</h3>
+        <pre id="image-1-2-html"></pre>
+        Selected image source: <b><span id="image-1-2-description"></span></b>
+      </div>
+      <script>
+        // JavaScript to display the selected image source
+        window.addEventListener('load', function() {
+          const imageIds = ['image-1-1', 'image-1-2'];
+          displayImageSource(imageIds);
+        });
+      </script>
+    </section>
+    <section>
+      <h2>Just a normal image tag without and with srcset attribute set and sizes</h2>
+      <p>
+        The thumbnail has a width of 53px and a height of 80px.
+
+        The srcset attribute has three additional images with a width of 106px, 159px and 265px.
+        With the sizes attribute set to 53px, the browser should load the image with a width of 106px.
+      </p>
+      <img id="image-2-1" class="thumbnail" src="/media/manual/2_53x80.jpeg" alt="img original thumbnail">
+      <img
+        srcset="
+                /media/manual/2_53x80.jpeg 53w,
+                /media/manual/2_106x160.jpeg 106w,
+                /media/manual/2_159x240.jpeg 159w,
+                /media/manual/2_265x400.jpeg 265w,
+                /media/manual/2_424x640.jpeg 424w,
+               "
+        sizes="53px"
+        src="/media/manual/2_424x640.jpeg"
+        class="thumbnail"
+        alt="img thumbnail with srcset"
+        id="image-2-2"
+      >
+      <div id="image-2-1-container">
+        <h3>First Image</h3>
+      <pre id="image-2-1-html"></pre>
+        Selected image source: <b><span id="image-2-1-description"></span></b>
+      </div>
+      <div id="image-2-2-container">
+        <h3>Second Image</h3>
+      <pre id="image-2-2-html"></pre>
+        Selected image source: <b><span id="image-2-2-description"></span></b>
+      </div>
+      <script>
+      // JavaScript to display the selected image source
+        window.addEventListener('load', function() {
+          const imageIds = ['image-2-1', 'image-2-2'];
+          displayImageSource(imageIds);
+        });
+      </script>
+    </section>
+    <section>
+      <h2>Using the picture element</h2>
+      <p>
+        The thumbnail has a width of 53px and a height of 80px.
+
+        The picture element has three additional images with a width of 106px, 159px and 265px.
+        The sizes attribute is set to 53px, so the browser should load the image with a width of 106px.
+      </p>
+      <picture class="thumbnail">
+        <img id="image-3-1" src="/media/manual/3_53x80.jpeg" alt="img original thumbnail">
+      </picture>
+      <picture class="thumbnail">
+        <source
+          media="(min-width: 0px)"
+          srcset="
+                  /media/manual/3_53x80.jpeg 53w,
+                  /media/manual/3_106x160.jpeg 106w,
+                  /media/manual/3_159x240.jpeg 159w,
+                  /media/manual/3_265x400.jpeg 265w,
+                  /media/manual/3_424x640.jpeg 424w,
+                 "
+          sizes="53px"
+        >
+        <img id="image-3-2" src="/media/manual/3_424x640.jpeg" alt="img in picture with srcset">
+      </picture>
+      <div id="image-3-1-container">
+        <h3>First Image</h3>
+      <pre id="image-3-1-html"></pre>
+        Selected image source: <b><span id="image-3-1-description"></span></b>
+      </div>
+      <div id="image-3-2-container">
+        <h3>Second Image</h3>
+      <pre id="image-3-2-html"></pre>
+        Selected image source: <b><span id="image-3-2-description"></span></b>
+      </div>
+      <script>
+      // JavaScript to display the selected image source
+        window.addEventListener('load', function() {
+          const imageIds = ['image-3-1', 'image-3-2'];
+          displayImageSource(imageIds, true);
+        });
+      </script>
+    </section>
+    <section>
+      <h2>Using the picture element with different formats</h2>
+      <p>
+        The thumbnail has a width of 53px and a height of 80px.
+
+        The picture element has three additional images with a width of 106px, 159px and 265px.
+        The sizes attribute is set to 53px, so the browser should load the image with a width of 106px.
+      </p>
+      <picture class="thumbnail">
+        <img id="image-4-1" src="/media/manual/4_53x80.jpeg" alt="img original thumbnail">
+      </picture>
+      <picture class="thumbnail">
+        <source
+          media="(min-width: 0px)"
+          srcset="
+                  /media/manual/4_53x80.avif 53w,
+                  /media/manual/4_106x160.avif 106w,
+                  /media/manual/4_159x240.avif 159w,
+                  /media/manual/4_265x400.avif 265w,
+                  /media/manual/4_424x640.avif 424w,
+                 "
+          sizes="53px"
+        >
+        <source
+          media="(min-width: 0px)"
+          srcset="
+                  /media/manual/4_53x80.webp 53w,
+                  /media/manual/4_106x160.webp 106w,
+                  /media/manual/4_159x240.webp 159w,
+                  /media/manual/4_265x400.webp 265w,
+                  /media/manual/4_424x640.webp 424w,
+                 "
+          sizes="53px"
+        >
+        <source
+          media="(min-width: 0px)"
+          srcset="
+                  /media/manual/4_53x80.jpeg 53w,
+                  /media/manual/4_106x160.jpeg 106w,
+                  /media/manual/4_159x240.jpeg 159w,
+                  /media/manual/4_265x400.jpeg 265w,
+                  /media/manual/4_424x640.jpeg 424w,
+                 "
+          sizes="53px"
+        >
+        <img id="image-4-2" src="/media/manual/4_424x640.jpeg" alt="img in picture with srcset">
+      </picture>
+      <div id="image-4-1-container">
+        <h3>First Image</h3>
+      <pre id="image-4-1-html"></pre>
+        Selected image source: <b><span id="image-4-1-description"></span></b>
+      </div>
+      <div id="image-4-2-container">
+        <h3>Second Image</h3>
+      <pre id="image-4-2-html"></pre>
+        Selected image source: <b><span id="image-4-2-description"></span></b>
+      </div>
+      <script>
+      // JavaScript to display the selected image source
+        window.addEventListener('load', function() {
+          const imageIds = ['image-4-1', 'image-4-2'];
+          displayImageSource(imageIds, true);
+        });
+      </script>
+    </section>
+  </main>
+</body>
+</html>
