@@ -8,4 +8,5 @@ from .views import MainView
 urlpatterns = [
     path("", MainView.as_view(), name="main"),
     path("manual/", TemplateView.as_view(template_name="manual.html"), name="manual"),
+    path("thumbnails/", MainView.as_view(template_name="thumbnails.html"), name="thumbnails"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

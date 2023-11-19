@@ -1,0 +1,118 @@
+{% load wagtailimages_tags %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Manual Images</title>
+    <style>
+      .thumbnail {
+        width: 53px;  /* Adjust the width as needed */
+        height: auto;  /* This keeps the aspect ratio intact */
+        margin-right: 10px;
+      }
+      picture {
+        display: inline-block; /* This makes the picture behave like an image */
+        margin-right: 10px;   /* Adds space to the right of each picture */
+      }
+
+      picture img {
+        width: 53px;  /* Adjust the width as needed */
+        height: auto;  /* This keeps the aspect ratio intact */
+      }
+    </style>
+
+  </style>
+</head>
+<body>
+  <main>
+    <script>
+      function displayImageSource(imageIds, pictureTag = false) {
+        for (const id of imageIds) {
+          const imgElement = document.getElementById(id);
+          let pictureElement = null;
+          if (pictureTag) {
+            pictureElement = imgElement.parentElement;
+          }
+          const imgName = imgElement.currentSrc.split('/').pop();
+
+        // image description
+          let imgSpan = document.getElementById(`${id}-description`);
+          imgSpan.innerText = imgName;
+
+        // image html
+          let imgHtml = document.getElementById(`${id}-html`);
+          if (pictureElement) {
+            imgHtml.innerText = pictureElement.outerHTML;
+          } else {
+            imgHtml.innerText = imgElement.outerHTML;
+          }
+        }
+      }
+    </script>
+    <h1>Render thumbnails using Wagtail</h1>
+    <p>
+      Maybe compare native Wagtail against wagtail-srcset.
+    </p>
+    <section>
+      <h2>Just image tag with scrcset?</h2>
+      <p>
+        The thumbnail has a width of 53px and a height of 80px.
+
+        The srcset attribute has three additional images with a width of 106px, 159px and 265px.
+        With the sizes attribute set to 53px, the browser should load the image with a width of 106px.
+      </p>
+      {% image img width-53 id="image-1-1" %}
+      {% srcset_image img width-{53,106,159,265} sizes="53px" id="image-1-2" %}
+
+      <div id="image-1-1-container">
+        <h3>First Image</h3>
+      <pre id="image-1-1-html"></pre>
+        Selected image source: <b><span id="image-1-1-description"></span></b>
+      </div>
+      <div id="image-1-2-container">
+        <h3>Second Image</h3>
+      <pre id="image-1-2-html"></pre>
+        Selected image source: <b><span id="image-1-2-description"></span></b>
+      </div>
+      <script>
+      // JavaScript to display the selected image source
+        window.addEventListener('load', function() {
+          const imageIds = ['image-1-1', 'image-1-2'];
+          displayImageSource(imageIds);
+        });
+      </script>
+    </section>
+    <section>
+      <h2>Now with the picture tag?</h2>
+      <p>
+        The thumbnail has a width of 53px and a height of 80px.
+
+        The srcset attribute has three additional images with a width of 106px, 159px and 265px.
+        With the sizes attribute set to 53px, the browser should load the image with a width of 106px.
+      </p>
+      <picture>
+        {% image img width-53 id="image-2-1" %}
+      </picture>
+      {% picture img format-{avif,webp,jpeg} width-{53,106,159,265} width="53" sizes="53px" id="image-2-2" %}
+
+      <div id="image-2-1-container">
+        <h3>First Image</h3>
+      <pre id="image-2-1-html"></pre>
+        Selected image source: <b><span id="image-2-1-description"></span></b>
+      </div>
+      <div id="image-2-2-container">
+        <h3>Second Image</h3>
+      <pre id="image-2-2-html"></pre>
+        Selected image source: <b><span id="image-2-2-description"></span></b>
+      </div>
+      <script>
+      // JavaScript to display the selected image source
+        window.addEventListener('load', function() {
+          const imageIds = ['image-2-1', 'image-2-2'];
+          displayImageSource(imageIds, true);
+        });
+      </script>
+    </section>
+  </main>
+</body>
+</html>

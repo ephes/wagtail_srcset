@@ -22,6 +22,9 @@
         float:right;
         width:600px;
       }
+      .clearfix {
+        clear: both;
+      }
     </style>
   </head>
   <body>
@@ -63,6 +66,19 @@
         </p>
         {% srcset_image img width-600 %}
       </div>
+      <div class="clearfix"></div>
+      <div>
+        There are two other pages:
+        <ul>
+          <li><a href="/manual/">
+            Manually crafted html with different srcset attributes and picture
+            elements to be able to test browser behaviour
+          </a></li>
+          <li><a href="/thumbnails/">
+            Thumbnails created with Wagtail image tags
+          </a></li>
+        </ul>
+      </div>
     </div>
-    </body>
-  </html>
+  </body>
+</html>
