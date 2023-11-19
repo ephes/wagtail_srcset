@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8">
     <title>wagtail-srcset test page</title>
-    <style type="text/css">
+    <style>
       body, html {
         margin:0;
         padding:0;
@@ -40,8 +40,8 @@
             {% image img width-600 %}
           {% endverbatim image_tag %}.
           It looks blurry because the original image is at first scaled
-          to 600px width by wagtail and stored in a image rendition. Then
-          this 600px image is shown on a high pixel densitiy screen. Since
+          to 600px width by wagtail and stored in an image rendition. Then
+          this 600px image is shown on a high pixel density screen. Since
           those screens use more hardware pixels to display those 600 browser
           pixels, the image is upscaled implicitly by a factor of 2 to 3. Ouch.
         </p>
@@ -57,11 +57,12 @@
           display devices, because now 1 browser image pixel should roughly
           map to one pixel on the device again. We present the browser with
           different image size alternatives and the browser chooses the most
-          appropriate size for it's devices pixel densitiy which could mean
+          appropriate size for its devices pixel density which could mean
           that a 1800px width image is displayed for a 600 browser pixel width
           image.
         </p>
         {% srcset_image img width-600 %}
       </div>
+    </div>
     </body>
   </html>
