@@ -21,7 +21,7 @@ classifiers = [
     "Framework :: Django",
     "License :: OSI Approved :: BSD License",
     "Topic :: Internet",
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 7 - Inactive",
     "Environment :: Web Environment",
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.10",

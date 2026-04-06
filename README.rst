@@ -79,11 +79,6 @@ Features
 * You can specify default images sizes in DEFAULT_SRCSET_RENDITIONS
 * wagtails WAGTAILIMAGES_JPEG_QUALITY is used for jpeg quality when set
 
-Todo
-----
-
-* Dont just support the width resize-rule add fill, max, min etc
-
 Documentation
 -------------
 

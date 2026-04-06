@@ -3,7 +3,7 @@
 History
 -------
 
-0.3.1 (2023-04-25)
+0.3.1 (2026-04-06)
 ++++++++++++++++++
 
 * Remove stale test images after test run via autouse fixture closes #4
