@@ -19,12 +19,30 @@ wagtail-srcset
 
 HTML5 image srcset support for Wagtail
 
+.. warning::
+
+   This project is deprecated and archived.
+
+   ``wagtail_srcset`` is no longer maintained as a separate package. Wagtail
+   now ships built-in ``srcset_image`` and ``picture`` tags for responsive
+   images, and responsive image handling for my own projects now lives in
+   ``django-cast``.
+
+   For new projects, use Wagtail's built-in responsive image support instead:
+   https://docs.wagtail.org/en/stable/topics/images.html
+
+   If you are using ``django-cast``, use its built-in responsive image
+   handling and do not add ``wagtail_srcset`` as an extra dependency.
+
 Quickstart
 ----------
 
 Install wagtail-srcset::
 
     pip install wagtail-srcset
+
+This package remains available for existing installations, but it is not
+recommended for new projects.
 
 Add it to your `INSTALLED_APPS`:
 

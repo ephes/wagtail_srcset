@@ -7,6 +7,8 @@ History
 ++++++++++++++++++
 
 * Remove stale test images after test run via autouse fixture closes #4
+* Mark project as deprecated and archived
+* Recommend Wagtail built-in responsive image tags or django-cast instead
 
 0.3.0 (2023-04-24)
 ++++++++++++++++++
